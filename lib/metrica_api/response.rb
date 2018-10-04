@@ -1,12 +1,10 @@
 # frozen_string_literal: true
 
-module MetricaApi
+class MetricaApi
   # Yandex Metrica response parser
-  module Response
+  class Response
 
-    module_function
-
-    def parse(response)
+    def self.parse(response)
       if response.is_a?(Array)
         response.map { |r| parse(r) }
       elsif response.is_a?(String)
@@ -16,10 +14,6 @@ module MetricaApi
       end
     rescue JSON::ParserError
       response
-    end
-
-    def json_parse(response)
-      JSON.parse(response)
     end
 
   end

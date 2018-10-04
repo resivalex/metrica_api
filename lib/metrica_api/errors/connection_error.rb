@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module MetricaApi
+class MetricaApi
   # Connection error class
   class ConnectionError < StandardError
   end

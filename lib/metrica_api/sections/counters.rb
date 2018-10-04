@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module MetricaApi
+class MetricaApi
   module Sections
     # Couters API
     class Counters
