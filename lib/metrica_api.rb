@@ -8,7 +8,7 @@ require 'metrica_api/sections/counters'
 # Yandex Metrica API module
 class MetricaApi
 
-  API_HOST = 'https://api-metrika.yandex.ru'
+  API_HOST = 'https://api-metrika.yandex.net'
   DEFAULT_VERSION = 'v1'
   DEFAULT_FORMAT = 'json'
 
@@ -26,7 +26,7 @@ class MetricaApi
 
     attr_accessor :logger
 
-    # @param options [Hash<:api_section, :method, :oauth_token[, :v[, :format]]>] navigation to method
+    # @param options [Hash<:api_section, :method, :oauth_token[, :v[, :format]]>] path to method
     # @param params [Hash] params for method
     # @result [Hash] response as ruby plain object
     def call(options, params)
@@ -48,8 +48,6 @@ class MetricaApi
     def request
       Request
     end
-
-    private
 
   end
 

@@ -11,12 +11,12 @@ describe 'Requests' do
     it 'performs GET-request' do
       stub_request(
         :get,
-        'https://api-metrika.yandex.ru/management/v1/counters.json?' +
-          'oauth_token=oauth_token&some_param=some_value'
-      ).to_return(body: '{"some_array": ["some", "items"], "some_number": 35}')
+        'https://api-metrika.yandex.net/management/v1/counters.json?some_param=some_value'
+      ).with(headers: { 'Authorization' => 'OAuth oauth_token' })
+        .to_return(body: '{"some_array": ["some", "items"], "some_number": 35}')
 
-      expect(api_object.data({ some_param: 'some_value' })).to(
-        eq("some_array" => ["some", "items"], "some_number" => 35)
+      expect(api_object.data(some_param: 'some_value')).to(
+        eq('some_array' => %w[some items], 'some_number' => 35)
       )
     end
   end
@@ -27,12 +27,12 @@ describe 'Requests' do
     it 'performs GET-request' do
       stub_request(
         :get,
-        'https://api-metrika.yandex.ru/stat/v1/data.json?' +
-          'oauth_token=oauth_token&some_param=some_value'
-      ).to_return(body: '{"some_array": ["some", "items"], "some_number": 35}')
+        'https://api-metrika.yandex.net/stat/v1/data.json?some_param=some_value'
+      ).with(headers: { 'Authorization' => 'OAuth oauth_token' })
+        .to_return(body: '{"some_array": ["some", "items"], "some_number": 35}')
 
-      expect(api_object.data({ some_param: 'some_value' })).to(
-        eq("some_array" => ["some", "items"], "some_number" => 35)
+      expect(api_object.data(some_param: 'some_value')).to(
+        eq('some_array' => %w[some items], 'some_number' => 35)
       )
     end
   end
@@ -45,19 +45,18 @@ describe 'Requests' do
     it 'logs requests' do
       stub_request(
         :get,
-        'https://api-metrika.yandex.ru/stat/v1/data.json?' +
-          'oauth_token=oauth_token&some_param=some_value'
-      ).to_return(body: '{"some_array": ["some", "items"], "some_number": 35}')
+        'https://api-metrika.yandex.net/stat/v1/data.json?some_param=some_value'
+      ).with(headers: { 'Authorization' => 'OAuth oauth_token' })
+        .to_return(body: '{"some_array": ["some", "items"], "some_number": 35}')
 
       expect(logger).to(
-        receive(:<<).with('https://api-metrika.yandex.ru/stat/v1/data.json?' +
-                            'some_param=some_value&oauth_token=oauth_token')
+        receive(:<<).with('https://api-metrika.yandex.net/stat/v1/data.json?some_param=some_value')
       )
       expect(logger).to(
         receive(:<<).with('{"some_array": ["some", "items"], "some_number": 35}')
       )
 
-      MetricaApi.reporting(access_token).data({ some_param: 'some_value' })
+      MetricaApi.reporting(access_token).data(some_param: 'some_value')
     end
   end
 end

@@ -23,3 +23,6 @@ MethodLength:
 
 Metrics/BlockLength:
   ExcludedMethods: ['describe', 'context']
+
+Naming/MemoizedInstanceVariableName:
+  EnforcedStyleForLeadingUnderscores: required

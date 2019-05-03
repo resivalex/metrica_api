@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-# coding: utf-8
 
 lib = File.expand_path('lib', __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
@@ -30,6 +29,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'bundler', '~> 1.6'
   spec.add_development_dependency 'rake', '~> 12.3.0', '>= 12.3.0'
   spec.add_development_dependency 'rspec', '~> 3.7.0', '>= 3.7.0'
-  spec.add_development_dependency 'rubocop', '~> 0.54.0'
+  spec.add_development_dependency 'rubocop', '~> 0.58.2'
   spec.add_development_dependency 'webmock', '~> 2.3.2', '>= 2.3.2'
 end
