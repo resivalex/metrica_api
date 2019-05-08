@@ -7,7 +7,7 @@
 Add this line to your application's Gemfile:
 
 ```
-gem 'metrica_api', '~> 0.0.2'
+gem 'metrica_api', '~> 0.1.0'
 ```
 
 Or install from command line:
